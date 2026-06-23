@@ -115,16 +115,10 @@ def learning(individual: Individual, parents: List[Individual]) -> None:
     
     #Sum down the columns (axis=0) to get 'k' for all language elements simultaneously
     k = np.sum(examples, axis=0)
-    print("Examples: ", examples)
-    print("k values for learning: ", k)
-    print("a and b values for learning: ", a, b)
-    print("num_examples: ", num_examples)
     
     #Calculate alpha and beta parameters as entire arrays
     alpha_params = np.maximum(k + a, epsilon)
     beta_params = np.maximum(num_examples - k + b, epsilon)
-    print("Alpha parameters for learning: ", alpha_params)
-    print("Beta parameters for learning: ", beta_params)
 
     #Generate the entire new language vector at once
     individual.language = np.random.beta(alpha_params, beta_params)
